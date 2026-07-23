@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>এডমিন প্যানেল - রেজাল্ট তালিকা</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="admin-container">
+        <h2>পরীক্ষার ফলাফলসমূহ</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ক্রমিক</th>
+                    <th>শিক্ষার্থীর নাম</th>
+                    <th>মোবাইল নম্বর</th>
+                    <th>প্রাপ্ত নম্বর</th>
+                    <th>জমার সময়</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% submissions.forEach((sub, index) => { %>
+                    <tr>
+                        <td><%= index + 1 %></td>
+                        <td><%= sub.name %></td>
+                        <td><%= sub.phone %></td>
+                        <td><strong><%= sub.score %> / <%= sub.total %></strong></td>
+                        <td><%= sub.submittedAt %></td>
+                    </tr>
+                <% }) %>
+                <% if(submissions.length === 0) { %>
+                    <tr>
+                        <td colspan="5" style="text-align: center;">এখনো কেউ পরীক্ষা জমা দেয়নি।</td>
+                    </tr>
+                <% } %>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
