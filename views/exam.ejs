@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCQ পরীক্ষা</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+    <!-- হেডার: বামে নাম/নম্বর, ডান পাশে কাউন্টডাউন ও সাবমিট বাটন -->
+    <header class="exam-header">
+        <div class="user-info">
+            <p><strong>শিক্ষার্থী:</strong> <%= student.name %></p>
+            <p><strong>ফোন:</strong> <%= student.phone %></p>
+        </div>
+        <div class="header-right">
+            <div class="timer-box">সময় বাকি: <span id="timer">30:00</span></div>
+            <button id="topSubmitBtn" onclick="submitExam()" class="btn-submit">উত্তরপত্র জমা দিন</button>
+        </div>
+    </header>
+
+    <main class="exam-container">
+        <form id="examForm">
+            <% questions.forEach((q, index) => { %>
+                <div class="question-card">
+                    <h3><%= q.question %></h3>
+                    <div class="options-group">
+                        <% q.options.forEach((opt, optIndex) => { %>
+                            <label class="option-label">
+                                <input type="radio" name="answers[<%= q.id %>]" value="<%= optIndex %>">
+                                <span><%= opt %></span>
+                            </label>
+                        <% }) %>
+                    </div>
+                </div>
+            <% }) %>
+        </form>
+    </main>
+
+    <script src="/js/exam.js"></script>
+</body>
+</html>
